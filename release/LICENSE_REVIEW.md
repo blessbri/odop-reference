@@ -28,3 +28,18 @@ a license grant. It is superseded here by the proposed Apache-2.0 `LICENSE`.
 No known third-party component is included beyond the declared Python runtime
 dependency `jsonschema`, which is installed by users rather than vendored.
 
+## Owner Confirmation
+
+The copyright owner confirms that the Version 1 materials included in this public repository are authorized for release under the Apache License, Version 2.0.
+
+To the best of the owner's knowledge:
+
+- the included Version 1 materials are original works or are otherwise authorized for publication;
+- no known proprietary third-party source code, documentation, or restricted material has been intentionally included;
+- the required publication rights have been granted for the included Version 1 baseline.
+
+This confirmation is made by the designated repository owner for the purpose of publishing the Version 1 reference implementation.
+
+Approved for public release.
+
+Blessbridge Global Trading LLC
