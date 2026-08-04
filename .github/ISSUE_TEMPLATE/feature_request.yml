@@ -1,0 +1,18 @@
+name: Scoped feature request
+description: Propose a bounded, authority-traceable improvement.
+title: "[Proposal]: "
+labels: ["proposal"]
+body:
+  - type: textarea
+    attributes:
+      label: Scope and authority
+      description: Cite the Protocol and Architecture material that authorizes the proposed work.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Semantic-risk screening
+      description: Explain whether the change could require a Protocol-Semantic Escalation.
+    validations:
+      required: true
+

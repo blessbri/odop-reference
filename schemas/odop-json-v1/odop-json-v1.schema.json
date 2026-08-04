@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:odop:representation:odop-json:1.0:schema",
+  "title": "Candidate ODOP JSON Interchange Representation Version 1",
+  "description": "Draft supporting-publication schema only; no parser, replay, verification, registry, interoperability, or conformance behavior.",
+  "$comment": "Constraint authority is recorded by x-odop-source annotations and schemas/odop-json-v1/README.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocolVersion", "representation", "artifactType", "artifact"],
+  "properties": {
+    "protocolVersion": {"const": "1.0", "x-odop-source": "Protocol 10.1-10.3, 10.9, 24.3, 24.8; V1 Field Mapping: Envelope"},
+    "representation": {"$ref": "#/$defs/representationDescriptor"},
+    "artifactType": {"const": "rightsObject", "x-odop-source": "Protocol 12.1-12.4, 13.1, 24.3; V1 Field Mapping: Envelope"},
+    "artifact": {"$ref": "#/$defs/rightsObject"}
+  },
+  "$defs": {
+    "opaqueString": {"type": "string", "x-odop-source": "Protocol 11.1-11.10, 24.3; V1 Field Mapping: opaque references"},
+    "extensions": {"type": "object", "additionalProperties": true, "x-odop-source": "Protocol 25.2-25.8, 26.7; V1 Field Mapping: extensions"},
+    "representationDescriptor": {
+      "type": "object", "additionalProperties": false, "required": ["id", "version"],
+      "properties": {
+        "id": {"const": "odop-json", "x-odop-source": "Protocol 10.2-10.3, 24.2-24.3; V1 JSON Wire Design"},
+        "version": {"const": "1.0", "x-odop-source": "Protocol 10.2-10.3, 10.9, 24.3; V1 JSON Wire Design"}
+      }
+    },
+    "canonicalRightReference": {
+      "type": "object", "additionalProperties": false, "required": ["objectId", "rightId"],
+      "properties": {"objectId": {"$ref": "#/$defs/opaqueString"}, "rightId": {"$ref": "#/$defs/opaqueString"}},
+      "x-odop-source": "Protocol 11.2-11.4, 12.4, 14.2, 16.2; V1 Field Mapping: canonical reference"
+    },
+    "rightsObject": {
+      "type": "object", "additionalProperties": false, "required": ["objectId", "assetReference", "rights"],
+      "properties": {
+        "objectId": {"$ref": "#/$defs/opaqueString"}, "assetReference": {"$ref": "#/$defs/opaqueString"},
+        "rights": {"type": "array", "items": {"$ref": "#/$defs/right"}, "x-odop-source": "Protocol 12.3-12.4, 13.3, 13.5; V1 Field Mapping"},
+        "metadata": {"type": "object", "additionalProperties": true, "x-odop-source": "Protocol 13.3, 13.7, 13.11; V1 Field Mapping"},
+        "initialHolder": {"$ref": "#/$defs/opaqueString"}, "verificationInformation": {"$ref": "#/$defs/opaqueObject"}, "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "right": {
+      "type": "object", "additionalProperties": false, "required": ["rightId", "policies", "events"],
+      "properties": {
+        "rightId": {"$ref": "#/$defs/opaqueString"},
+        "policies": {"type": "array", "items": {"$ref": "#/$defs/policy"}, "x-odop-source": "Protocol 14.3, 14.7, 15.1-15.4; V1 Field Mapping"},
+        "events": {"type": "array", "items": {"$ref": "#/$defs/rightsEvent"}, "x-odop-source": "Protocol 14.3-14.4, 16.1-16.3; V1 Field Mapping"},
+        "lifecycleStatus": {"type": "string", "x-odop-source": "Protocol 14.5; V1 Field Mapping; non-authoritative"},
+        "suppliedHolder": {"$ref": "#/$defs/opaqueString"}, "verificationInformation": {"$ref": "#/$defs/opaqueObject"}, "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "policy": {
+      "type": "object", "additionalProperties": false, "required": ["policyId"],
+      "properties": {
+        "policyId": {"$ref": "#/$defs/opaqueString"}, "policyReference": {"$ref": "#/$defs/opaqueString"},
+        "policyMaterial": {"$ref": "#/$defs/nonNullJson"}, "metadata": {"type": "object", "additionalProperties": true},
+        "verificationInformation": {"$ref": "#/$defs/opaqueObject"}, "extensions": {"$ref": "#/$defs/extensions"}
+      }, "x-odop-source": "Protocol 15.1-15.7; V1 Field Mapping"
+    },
+    "rightsEvent": {
+      "type": "object", "additionalProperties": false, "required": ["eventId", "target", "eventType", "sequence"],
+      "properties": {
+        "eventId": {"$ref": "#/$defs/opaqueString"}, "target": {"$ref": "#/$defs/canonicalRightReference"},
+        "eventType": {"type": "string", "x-odop-source": "Protocol 16.4; V1 Field Mapping; no allowed-value list"},
+        "predecessorEventId": {"$ref": "#/$defs/opaqueString"}, "sequence": {"type": "integer", "x-odop-source": "Protocol 16.3, 16.9; V1 Field Mapping; no initial/continuity rule"},
+        "payload": {"$ref": "#/$defs/nonNullJson"}, "verificationInformation": {"$ref": "#/$defs/opaqueObject"}, "extensions": {"$ref": "#/$defs/extensions"}
+      }, "x-odop-source": "Protocol 16.1-16.9; V1 Field Mapping"
+    },
+    "opaqueObject": {"type": "object", "additionalProperties": true, "x-odop-source": "Protocol 12.9, 13.8, 14.8, 15.6, 16.8, 19.2; V1 Field Mapping"},
+    "nonNullJson": {"not": {"type": "null"}, "x-odop-source": "Protocol 24.3, 24.8; V1 Field Mapping null rule"}
+  }
+}

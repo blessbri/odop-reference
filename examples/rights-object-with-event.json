@@ -1,0 +1,21 @@
+{
+  "protocolVersion": "1.0",
+  "representation": {"id": "odop-json", "version": "1.0"},
+  "artifactType": "rightsObject",
+  "artifact": {
+    "objectId": "example-object",
+    "assetReference": "example-asset",
+    "rights": [{
+      "rightId": "example-right",
+      "policies": [],
+      "events": [{
+        "eventId": "example-event",
+        "target": {"objectId": "example-object", "rightId": "example-right"},
+        "eventType": "example",
+        "sequence": 1,
+        "payload": {"example": true}
+      }]
+    }]
+  }
+}
+

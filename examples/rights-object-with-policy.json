@@ -1,0 +1,15 @@
+{
+  "protocolVersion": "1.0",
+  "representation": {"id": "odop-json", "version": "1.0"},
+  "artifactType": "rightsObject",
+  "artifact": {
+    "objectId": "example-object",
+    "assetReference": "example-asset",
+    "rights": [{
+      "rightId": "example-right",
+      "policies": [{"policyId": "example-policy", "policyMaterial": {"example": true}}],
+      "events": []
+    }]
+  }
+}
+

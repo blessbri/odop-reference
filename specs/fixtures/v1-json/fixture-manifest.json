@@ -1,0 +1,19 @@
+{
+  "catalogueVersion": "1.0",
+  "representation": {"id": "odop-json", "version": "1.0"},
+  "disclaimer": "Fixtures assert local structural handling only; no semantic, replay, verification, interoperability, or conformance outcome.",
+  "fixtures": [
+    {"id":"V1-POS-001","class":"positive","case":"minimum Rights Object","expectedIssues":[],"preserveReceipt":true,"source":"Protocol 13.1-13.3, 24.3"},
+    {"id":"V1-POS-002","class":"positive","case":"Right, Policy, Event, canonical reference","expectedIssues":[],"preserveReceipt":true,"source":"Protocol 11.2, 14-16, 24.3"},
+    {"id":"V1-POS-003","class":"positive","case":"metadata, verificationInformation, unknown extension","expectedIssues":[],"preserveReceipt":true,"source":"Protocol 13.7-13.9, 19.2, 25.2-25.8"},
+    {"id":"V1-NEG-001","class":"negative","case":"invalid UTF-8","expectedIssues":["V1-ENC-001"],"jsonPointer":"","preserveReceipt":true,"source":"Protocol 24.3-24.4"},
+    {"id":"V1-NEG-002","class":"negative","case":"malformed JSON","expectedIssues":["V1-JSON-001"],"jsonPointer":"","preserveReceipt":true,"source":"Protocol 24.3"},
+    {"id":"V1-NEG-003","class":"negative","case":"duplicate member","expectedIssues":["V1-JSON-002"],"jsonPointer":"","preserveReceipt":true,"source":"Protocol 24.4, 25.5"},
+    {"id":"V1-NEG-004","class":"negative","case":"non-object root","expectedIssues":["V1-JSON-003"],"jsonPointer":"","preserveReceipt":true,"source":"Protocol 24.3"},
+    {"id":"V1-NEG-005","class":"negative","case":"wrong descriptor/version","expectedIssues":["V1-REP-001"],"jsonPointer":"","preserveReceipt":true,"source":"Protocol 10.6, 24.8"},
+    {"id":"V1-NEG-006","class":"negative","case":"wrong protocol/artifact type, missing member, null, wrong type, unknown member","expectedIssues":["V1-SCHEMA-001","V1-SCHEMA-002","V1-SCHEMA-003","V1-SCHEMA-004","V1-SCHEMA-005"],"preserveReceipt":true,"source":"Protocol 23.2-23.3, 24.3"},
+    {"id":"V1-NEG-007","class":"negative","case":"malformed canonical reference, Policy, Event","expectedIssues":["V1-SCHEMA-004","V1-SCHEMA-005"],"preserveReceipt":true,"source":"Protocol 11.2, 15.2, 16.2-16.5"},
+    {"id":"V1-NEG-008","class":"negative","case":"configured byte limit","expectedIssues":["V1-RES-001"],"jsonPointer":"","preserveReceipt":true,"source":"Protocol 29.7"},
+    {"id":"V1-NEG-009","class":"negative","case":"configured reported-issue limit","expectedIssues":["V1-SCHEMA-005"],"preserveReceipt":true,"source":"Protocol 29.7"}
+  ]
+}

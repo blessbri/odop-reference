@@ -1,0 +1,11 @@
+name: Documentation issue
+description: Report an incorrect, unclear, or broken public document.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    attributes:
+      label: Location and proposed correction
+    validations:
+      required: true
+

@@ -1,0 +1,13 @@
+name: Schema and fixture JSON validation
+on: [push, pull_request]
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m json.tool schemas/odop-json-v1/odop-json-v1.schema.json > /dev/null
+      - run: python -m json.tool specs/fixtures/v1-json/fixture-manifest.json > /dev/null
+

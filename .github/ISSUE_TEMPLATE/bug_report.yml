@@ -1,0 +1,18 @@
+name: Bug report
+description: Report a reproducible Version 1 implementation defect.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Include the smallest safe input and commands needed to reproduce the issue.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected local behavior
+      description: Do not describe a protocol-conformance expectation unless it is cited from the Protocol Specification.
+    validations:
+      required: true
+

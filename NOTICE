@@ -1,0 +1,9 @@
+ODOP Reference Implementation
+
+This distribution contains the ODOP Version 1 reference implementation,
+supporting JSON representation material, and related documentation.
+
+This repository is distributed under the Apache License, Version 2.0. See
+LICENSE. It is a reference implementation and local structural toolkit; it is
+not a conformance certification service.
+

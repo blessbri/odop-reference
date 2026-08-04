@@ -1,0 +1,24 @@
+# Python environments and build products
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local configuration and editor metadata
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
