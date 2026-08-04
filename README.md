@@ -1,82 +1,185 @@
 # ODOP Reference Implementation
 
-ODOP, the Open Digital Ownership Protocol, provides a protocol foundation for
-representing digital ownership rights. This repository is the official
-reference implementation of Version 1 of the ODOP Reference Implementation.
-It is deliberately a bounded local structural toolkit, not a certification or
-hosted service.
+<p align="center">
+  <strong>Open Digital Ownership Protocol (ODOP)</strong><br>
+  <em>A reference implementation for representing digital ownership without binding to a blockchain, database, cloud provider, transport protocol, or cryptographic implementation.</em>
+</p>
 
-## Version 1 capability
+<p align="center">
+  <strong>Technology-neutral. Vendor-neutral. Future-ready.</strong>
+</p>
 
-Version 1 accepts the approved `odop-json` 1.0 representation for a Rights
-Object, preserves the received bytes, parses strict UTF-8 JSON, rejects
-duplicate member names, evaluates the bundled Draft 2020-12 JSON Schema, and
-reports deterministic local structural findings.
+<p align="center">
+  <img src="https://img.shields.io/badge/version-v1.0.0--rc.1-blue" alt="Version v1.0.0-rc.1">
+  <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="Python 3.9+">
+  <img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="Apache License 2.0">
+  <img src="https://img.shields.io/badge/status-Frozen%20Baseline-success" alt="Frozen Baseline">
+</p>
+
+---
+
+## Why ODOP?
+
+Most digital ownership systems are tightly coupled to one technology stack.
+
+ODOP separates **protocol semantics** from **implementation technology**,
+enabling independent implementations while preserving a common protocol
+foundation.
+
+## Version 1 Architecture
 
 ```text
 ArtifactHandlingBoundary
-  → ArtifactReceipt
-  → odop-json v1 parser
-  → Draft 2020-12 JSON Schema
-  → Structural Validator
-  → LocalValidationResult
+        │
+        ▼
+ArtifactReceipt
+        │
+        ▼
+ODOP JSON Parser
+        │
+        ▼
+Draft 2020-12 JSON Schema
+        │
+        ▼
+Structural Validator
+        │
+        ▼
+LocalValidationResult
 ```
 
-Schema validity and `LocalValidationResult` are local structural observations.
-They are not claims of protocol validity, protocol conformance,
-interoperability, replay, verification, or trust.
+---
 
-Version 1 does **not** implement replay, lifecycle or holder derivation, policy
-evaluation, verification, Verification Profiles, registries,
-interoperability, conformance, canonicalization, signing, transport,
-persistence, recovery, replication, consensus, blockchain, or post-quantum
-capabilities.
+## Feature Matrix
 
-## Install
+| Capability | Version 1 |
+| --- | --- |
+| JSON Representation | ✅ |
+| JSON Schema | ✅ |
+| Parser | ✅ |
+| Structural Validation | ✅ |
+| Deterministic Issue Model | ✅ |
+| Fixture Catalogue | ✅ |
+| Integration Tests | ✅ |
+| Replay | ❌ |
+| Verification | ❌ |
+| Registry | ❌ |
+| Interoperability | ❌ |
+| Conformance | ❌ |
 
-Use Python 3.9 or later in a fresh virtual environment:
+---
+
+## Quick Start
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e '.[dev]'
-```
-
-The editable install is intentional for Version 1: the frozen parser resolves
-the approved schema from this repository checkout.
-
-## Quick start
-
-```bash
-python examples/validate_v1.py examples/minimal-rights-object.json
+python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
-See [the developer quick-start](docs/getting-started/V1_DEVELOPER_QUICKSTART.md)
-and [the public API overview](docs/reference/V1_API_OVERVIEW.md).
+Validate:
 
-## Repository layout
+```bash
+python examples/validate_v1.py examples/minimal-rights-object.json
+```
 
-- [`protocol/`](protocol/) — frozen ODOP Protocol Specification.
-- [`architecture/`](architecture/) — frozen Reference Implementation Architecture.
-- [`specs/`](specs/) and [`schemas/`](schemas/) — Version 1 supporting materials.
-- [`packages/protocol-model/`](packages/protocol-model/) — public Python model,
-  parser, artifact boundary, and structural validator.
-- [`tests/`](tests/) — focused Version 1 tests.
-- [`docs/`](docs/) and [`release/`](release/) — developer, governance, and
-  release records.
+---
 
-## Status and roadmap boundary
+## Repository Layout
 
-Version 1 is frozen and feature-complete. Future work must preserve the frozen
-Protocol Specification as the sole semantic authority and follow the published
-governance process. This repository does not begin Version 2.
+```text
+protocol/
+architecture/
+packages/
+schemas/
+specs/
+tests/
+examples/
+docs/
+release/
+```
 
-## Contributing, security, and license
+---
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [GOVERNANCE.md](GOVERNANCE.md),
-[SECURITY.md](SECURITY.md), [SUPPORT.md](SUPPORT.md), and the
-[Code of Conduct](CODE_OF_CONDUCT.md). The proposed public license is Apache
-License 2.0; see [LICENSE](LICENSE) and [release/LICENSE_REVIEW.md](release/LICENSE_REVIEW.md).
+## FAQ
 
+### Why not blockchain?
+
+Version 1 intentionally focuses on protocol representation and local structural
+processing. Blockchain integration is outside Version 1 scope.
+
+### Why technology-neutral?
+
+The protocol is designed so implementations are not tied to one runtime,
+storage engine, cloud provider, or cryptographic stack.
+
+### Is this production-ready?
+
+Version 1 is a **reference implementation** and bounded local structural
+toolkit. It is not a protocol certification, interoperability suite, or
+production trust infrastructure.
+
+---
+
+## Roadmap
+
+### ✅ Version 1
+
+- Representation
+- Schema
+- Parser
+- Structural Validator
+- Fixtures
+- Integration Tests
+
+### 🔜 Version 2
+
+- Replay
+
+### 🔜 Version 3
+
+- Verification
+
+### 🔮 Future
+
+- Enterprise SDK
+- Cloud Services
+- Post-Quantum Evolution
+
+---
+
+## Community
+
+Contributions are welcome.
+
+Please read:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [GOVERNANCE.md](GOVERNANCE.md)
+- [SECURITY.md](SECURITY.md)
+- [SUPPORT.md](SUPPORT.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+
+---
+
+## License
+
+Apache License 2.0
+
+See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+---
+
+## Vision
+
+Build an open ecosystem for digital ownership that is:
+
+- Open
+- Technology-neutral
+- Vendor-neutral
+- Extensible
+- Long-term maintainable
+
+---
+
+**© Blessbridge Global Trading LLC**
